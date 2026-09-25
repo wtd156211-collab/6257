@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>rollkeep 层覆盖 — four-layers</title>
+<style>
+body { font-family: "Helvetica Neue", "PingFang SC", sans-serif; margin: 32px; color: #1f2328; }
+h1 { font-size: 20px; }
+.meta { color: #57606a; font-size: 13px; margin-bottom: 16px; }
+svg { display: block; background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; }
+.layer-name { font-size: 13px; fill: #1f2328; font-weight: 600; }
+.tick { font-size: 10px; fill: #57606a; }
+table { border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+th, td { border: 1px solid #d0d7de; padding: 5px 14px; text-align: right; }
+th { background: #f6f8fa; }
+td:first-child, th:first-child { text-align: left; }
+h2 { font-size: 15px; margin-top: 28px; }
+</style>
+</head>
+<body>
+<h1>rollkeep 层覆盖与取层明细</h1>
+<p class="meta">查询 <strong>four-layers</strong> · 区间 [1753660800, 1788220800]
+（2025-07-28 00:00:00 ~ 2026-09-01 00:00:00 UTC） · 水位 W = 1788220800（2026-09-01 00:00:00 UTC）</p>
+<svg id="bands" width="1000" height="252" viewBox="0 0 1000 252"
+ xmlns="http://www.w3.org/2000/svg" role="img" aria-label="各层覆盖区间">
+<rect x="60.00" y="22" width="897.76" height="198" fill="#8b949e" fill-opacity="0.12" stroke="#8b949e" stroke-opacity="0.4" stroke-dasharray="6 4"/>
+<rect data-layer="raw" data-start="1787961600" data-end="1788220800" data-retention-start="1787961600" data-buckets="8" x="951.02" y="46" width="6.73" height="26" fill="#2f81f7" fill-opacity="0.75" rx="3"/>
+<rect data-layer="minute" data-start="1787011200" data-end="1788220859" data-retention-start="1787011200" data-buckets="49" x="926.33" y="90" width="31.42" height="26" fill="#3fb950" fill-opacity="0.75" rx="3"/>
+<rect data-layer="hour" data-start="1777852800" data-end="1788224399" data-retention-start="1777852800" data-buckets="81" x="688.43" y="134" width="269.42" height="26" fill="#d29922" fill-opacity="0.75" rx="3"/>
+<rect data-layer="day" data-start="1753660800" data-end="1788307199" data-retention-start="1753660800" data-buckets="75" x="60.00" y="178" width="900.00" height="26" fill="#f47067" fill-opacity="0.75" rx="3"/>
+<text x="52" y="59.0" text-anchor="end" dominant-baseline="middle" class="layer-name">raw</text>
+<text x="52" y="103.0" text-anchor="end" dominant-baseline="middle" class="layer-name">minute</text>
+<text x="52" y="147.0" text-anchor="end" dominant-baseline="middle" class="layer-name">hour</text>
+<text x="52" y="191.0" text-anchor="end" dominant-baseline="middle" class="layer-name">day</text>
+<line x1="951.02" y1="42" x2="951.02" y2="76" stroke="#2f81f7" stroke-width="1.5" stroke-dasharray="4 3"/><text x="951.02" y="38" text-anchor="middle" class="tick">保留起点 2026-08-29 00:00:00</text>
+<line x1="926.33" y1="86" x2="926.33" y2="120" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="4 3"/><text x="926.33" y="82" text-anchor="middle" class="tick">保留起点 2026-08-18 00:00:00</text>
+<line x1="688.43" y1="130" x2="688.43" y2="164" stroke="#d29922" stroke-width="1.5" stroke-dasharray="4 3"/><text x="688.43" y="126" text-anchor="middle" class="tick">保留起点 2026-05-04 00:00:00</text>
+<line x1="60.00" y1="174" x2="60.00" y2="208" stroke="#f47067" stroke-width="1.5" stroke-dasharray="4 3"/><text x="60.00" y="170" text-anchor="middle" class="tick">保留起点 2025-07-28 00:00:00</text>
+<line x1="60.00" y1="230" x2="60.00" y2="235" stroke="#57606a" stroke-width="1"/><text x="60.00" y="248" text-anchor="middle" class="tick">2025-07-28 00:00:00</text>
+<line x1="240.00" y1="230" x2="240.00" y2="235" stroke="#57606a" stroke-width="1"/><text x="240.00" y="248" text-anchor="middle" class="tick">2025-10-16 04:47:59</text>
+<line x1="420.00" y1="230" x2="420.00" y2="235" stroke="#57606a" stroke-width="1"/><text x="420.00" y="248" text-anchor="middle" class="tick">2026-01-04 09:35:59</text>
+<line x1="600.00" y1="230" x2="600.00" y2="235" stroke="#57606a" stroke-width="1"/><text x="600.00" y="248" text-anchor="middle" class="tick">2026-03-25 14:23:59</text>
+<line x1="780.00" y1="230" x2="780.00" y2="235" stroke="#57606a" stroke-width="1"/><text x="780.00" y="248" text-anchor="middle" class="tick">2026-06-13 19:11:59</text>
+<line x1="960.00" y1="230" x2="960.00" y2="235" stroke="#57606a" stroke-width="1"/><text x="960.00" y="248" text-anchor="middle" class="tick">2026-09-01 23:59:59</text>
+<line x1="60" y1="230" x2="960" y2="230" stroke="#57606a"/>
+</svg>
+<h2>本次查询取层明细</h2>
+<table id="detail">
+<thead><tr><th>层</th><th>桶数（原始层为点数）</th><th>贡献点数</th></tr></thead>
+<tbody>
+<tr data-layer="raw" data-buckets="8" data-points="8"><td>raw</td><td>8</td><td>8</td></tr>
+<tr data-layer="minute" data-buckets="41" data-points="78"><td>minute</td><td>41</td><td>78</td></tr>
+<tr data-layer="hour" data-buckets="39" data-points="75"><td>hour</td><td>39</td><td>75</td></tr>
+<tr data-layer="day" data-buckets="24" data-points="68"><td>day</td><td>24</td><td>68</td></tr>
+</tbody>
+</table>
+<h2>各层保有统计</h2>
+<table id="stats">
+<thead><tr><th>层</th><th>条目数</th><th>保有区间（UTC）</th><th>保留期</th></tr></thead>
+<tbody>
+<tr><td>raw</td><td>8</td><td>2026-08-29 00:00:00 ~ 2026-09-01 00:00:00</td><td>3 天</td></tr>
+<tr><td>minute</td><td>49</td><td>2026-08-18 00:00:00 ~ 2026-09-01 00:00:59</td><td>14 天</td></tr>
+<tr><td>hour</td><td>81</td><td>2026-05-04 00:00:00 ~ 2026-09-01 00:59:59</td><td>120 天</td></tr>
+<tr><td>day</td><td>75</td><td>2025-07-28 00:00:00 ~ 2026-09-01 23:59:59</td><td>400 天</td></tr>
+</tbody>
+</table>
+</body>
+</html>
